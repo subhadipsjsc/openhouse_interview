@@ -1,3 +1,3 @@
-solveing the solution :
+The solution :
 
 run : node index.js
