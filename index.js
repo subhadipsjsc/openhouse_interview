@@ -1,24 +1,4 @@
-data = {
-    "Devika": ["Atika", "Pranav", "Rahul"],
-    "Atika": ["Devika", "Vanshika"],
-    "Pranav": ["Devika", "Prateek", "Priyanka", "Vanshika"],
-    "Priyanka": ["Pranav", "Rahul"],
-    "Prateek": ["Pranav", "Sneha", "Rishika",],
-    "Sneha": ["Prateek", "Rishika", 'Sofia', 'Lucas'],
-    "Rishika": ["Prateek", "Sneha", 'Liam', 'Nathan'],
-    "Vanshika": ['Nathan', "Pranav", "Atika"],
-    "Rahul": ["Priyanka", "Devika", 'Scott']
-}
 
-const source = "Prateek"
-const destination= "Rahul"
-let my_tree ={}
-make_tree(data , source ,destination,my_tree)
-// console.log(JSON.stringify(my_tree, null, 4))
-
-let path =[] 
-find_path(my_tree ,destination ,  source , path );
-console.log(path.reverse())
 
 function find_path(data ,start,end , arr=[]){
     if(data[start] ){
@@ -39,10 +19,16 @@ function find_path(data ,start,end , arr=[]){
 function make_tree(data , source ,destination, my_tree, i=0 ){
     let step = i;
     step++;
-    if(data[source] && i<=10 ){
+    if(data[source] ){
         for(const itm of data[source]){
             if(itm == destination ) {
-                my_tree[itm] = {prev : source , stp : step , final: destination }
+                if(my_tree[itm] && my_tree[itm].stp > step){
+                    my_tree[itm] = {prev : source , stp : step  }
+                }
+                else{
+                    my_tree[itm] = {prev : source , stp : step  }
+                }
+               
                 break;
             }
             else{
@@ -56,6 +42,32 @@ function make_tree(data , source ,destination, my_tree, i=0 ){
     }
 }
 
+
+
+data = {
+    "Devika": ["Atika", "Pranav", "Rahul"],
+    "Atika": ["Devika", "Vanshika"],
+    "Pranav": ["Devika", "Prateek", "Priyanka", "Vanshika"],
+    "Priyanka": ["Pranav", "Rahul"],
+    "Prateek": ["Pranav", "Sneha", "Rishika",],
+    "Sneha": ["Prateek", "Rishika", 'Sofia', 'Lucas'],
+    "Rishika": ["Prateek", "Sneha", 'Liam', 'Nathan'],
+    "Vanshika": ['Nathan', "Pranav", "Atika"],
+    "Rahul": ["Priyanka", "Devika", 'Scott']
+}
+
+
+
+
+const source = "Prateek"
+const destination= "Rahul"
+let my_tree ={}
+make_tree(data , source ,destination,my_tree)
+// console.log(JSON.stringify(my_tree, null, 4))
+
+let path =[] 
+find_path(my_tree ,destination ,  source , path );
+console.log(path.reverse())
 
 
 
